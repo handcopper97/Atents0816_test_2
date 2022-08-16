@@ -10,7 +10,7 @@ namespace Atents_22._08._16_01_Console_2
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Console.WriteLine("손동욱");//내 이름 출력
             Console.ReadKey();
         }
     }
