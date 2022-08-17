@@ -44,11 +44,33 @@ namespace Atents_22._08._16_01_Console_2
             if (sum >= 1)
             {
                 Console.WriteLine("\n레벨업");
-            } else{
-            
-            
+            }
+            else
+            {
+
+
+                Console.WriteLine($"\n현재 경험치는 {sum}입니다.\n\n\n");
+            }
+
+            exp = 0.0f;
+            sum = 0;
+            Console.WriteLine($"\n반복문 시작.\n현재 경험치는 {sum}입니다.");
+            while (sum < 1)
+            {
+                Console.Write("추가할 경험치를 입력해주세요 : ");
+                temp = Console.ReadLine();
+
+                sum += exp + float.Parse(temp);
+
                 Console.WriteLine($"\n현재 경험치는 {sum}입니다.");
             }
+
+            while (sum > 1)
+            {
+                sum -= 1;
+                Console.WriteLine($"\n레벨업\n현재 경험치는 {sum*100:f1}%입니다.");
+            }
+            
 
 
 
