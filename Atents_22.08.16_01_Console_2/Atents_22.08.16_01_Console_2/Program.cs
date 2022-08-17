@@ -37,6 +37,20 @@ namespace Atents_22._08._16_01_Console_2
             Console.WriteLine(result);
 
 
+            Console.WriteLine("경험치를 추가합니다.\n");
+            Console.Write("추가할 경험치 : ");
+            string temp = Console.ReadLine();
+            float sum = exp + float.Parse(temp);
+            if (sum >= 1)
+            {
+                Console.WriteLine("\n레벨업");
+            } else{
+            
+            
+                Console.WriteLine($"\n현재 경험치는 {sum}입니다.");
+            }
+
+
 
             Console.ReadKey();
         }
