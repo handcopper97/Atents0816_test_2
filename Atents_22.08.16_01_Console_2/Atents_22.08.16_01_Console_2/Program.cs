@@ -86,7 +86,7 @@ namespace Atents_22._08._16_01_Console_2
 
             Character human1 = new Character();
 
-            Character human2 = new Character();
+
 
             //human1.name = "a";
 
