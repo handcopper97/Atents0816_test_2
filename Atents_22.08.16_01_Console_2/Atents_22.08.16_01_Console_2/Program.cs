@@ -78,11 +78,18 @@ namespace Atents_22._08._16_01_Console_2
             //    sum -= 1;
             //    Console.WriteLine($"\n레벨업\n현재 경험치는 {sum * 100:f1}%입니다.");
             //}
-            int temp;
-            temp = calcul();
+            //int temp;
+            //temp = calcul();
 
 
-            print(temp);
+            //print(temp);
+
+            Character human1 = new Character();
+
+            Character human2 = new Character();
+
+            //human1.name = "a";
+
 
             Console.ReadKey();
         }
