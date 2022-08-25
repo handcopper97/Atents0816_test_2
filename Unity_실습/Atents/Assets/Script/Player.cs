@@ -52,11 +52,11 @@ public class Player : MonoBehaviour
         {
             Debug.Log("발사");
         }
-        
+
     }
     public void MoveInput(InputAction.CallbackContext context)
     {
-        
+
 
         inputDir = context.ReadValue<Vector2>();
         if (context.started)
@@ -83,5 +83,9 @@ public class Player : MonoBehaviour
 
         Debug.Log(inputDir);
 
+    }
+    public void Shift_Speed(InputAction.CallbackContext context)
+    {
+        speed *= 2;
     }
 }
