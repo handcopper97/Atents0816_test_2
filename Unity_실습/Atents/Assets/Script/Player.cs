@@ -6,8 +6,8 @@ using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
 {
-    
-    public float speed=1f;
+    public GameObject Bullet;
+    public float speed=1f, speeded;
     Vector3 inputDir;
     //bool ing = false;
     Animator ani;
@@ -76,20 +76,24 @@ public class Player : MonoBehaviour
     }
     public void OnFire(InputAction.CallbackContext context)
     {
+
+        Instantiate(Bullet, transform.position, transform.rotation);
+        Debug.Log("발사");
         if (context.started)
         {
-            Debug.Log("발사");
+            
         }
 
     }
     
     public void OnBoostOn(InputAction.CallbackContext context)
     {
+        speeded = speed;
         speed *= 2;
     }
     public void OnBoostOff(InputAction.CallbackContext context)
     {
-        speed = 2;
+        speed = speeded;
     }
     /*
     public void MoveInput(InputAction.CallbackContext context)
