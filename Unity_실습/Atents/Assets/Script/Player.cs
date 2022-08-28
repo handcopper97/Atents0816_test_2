@@ -23,8 +23,16 @@ public class Player : MonoBehaviour
     }
     void FixedUpdate()
     {
+        if (inputDir.y != 0)
+        {
+            inputDir.y = 0;
+            rigid.MovePosition(transform.position + speed * Time.fixedDeltaTime * inputDir);
+        }
+        else
+        {
+            rigid.MovePosition(transform.position + speed * Time.fixedDeltaTime * inputDir);
+        }
         
-        rigid.MovePosition(transform.position + speed * Time.fixedDeltaTime * inputDir);
         
     }
     /*
@@ -68,11 +76,18 @@ public class Player : MonoBehaviour
         //throw new NotImplementedException();    // NotImplementedException 을 실행해라. => 코드 구현을 알려주기 위해 강제로 죽이는 코드
 
         inputDir = context.ReadValue<Vector2>();    // 어느 방향으로 움직여야 하는지를 입력받음
+        if (inputDir.y != 0)
+        {
 
+        }
+        else
+        {
+            ani.SetFloat("InputY", inputDir.y);
+        }
         //dir.y > 0   // W를 눌렀다.
         //dir.y == 0  // W,S 중 아무것도 안눌렀다.
         //dir.y < 0   // S를 눌렀다.
-        ani.SetFloat("InputY", inputDir.y);
+        
     }
     public void OnFire(InputAction.CallbackContext context)
     {
@@ -94,6 +109,11 @@ public class Player : MonoBehaviour
     public void OnBoostOff(InputAction.CallbackContext context)
     {
         speed = speeded;
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Debug.Log("Game Over");
+        Destroy(this, 0.3f);
     }
     /*
     public void MoveInput(InputAction.CallbackContext context)
