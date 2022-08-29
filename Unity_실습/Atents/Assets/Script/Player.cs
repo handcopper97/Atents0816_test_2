@@ -23,6 +23,8 @@ public class Player : MonoBehaviour
     }
     void FixedUpdate()
     {
+        //피하기 게임 용 무브
+        /*
         if (inputDir.y != 0)
         {
             inputDir.y = 0;
@@ -32,8 +34,10 @@ public class Player : MonoBehaviour
         {
             rigid.MovePosition(transform.position + speed * Time.fixedDeltaTime * inputDir);
         }
-        
-        
+        */
+        rigid.MovePosition(transform.position + speed * Time.fixedDeltaTime * inputDir);
+
+
     }
     /*
     // Update is called once per frame
