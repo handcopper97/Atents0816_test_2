@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemySpwaner : MonoBehaviour
+public class EnemySpanwer : MonoBehaviour
 {
     public float enemy_time = 2f;
     public GameObject enemy;

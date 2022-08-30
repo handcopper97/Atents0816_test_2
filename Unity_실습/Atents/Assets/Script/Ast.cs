@@ -11,6 +11,7 @@ public class Ast : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        Destroy(this, 7f);
     }
 
     // Update is called once per frame

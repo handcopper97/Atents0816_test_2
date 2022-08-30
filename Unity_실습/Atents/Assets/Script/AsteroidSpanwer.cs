@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using static UnityEditor.Experimental.AssetDatabaseExperimental.AssetDatabaseCounters;
 
-public class AsteroidSpwaner : MonoBehaviour
+public class AsteroidSpanwer : MonoBehaviour
 {
     public float Spawn_time= 1f;
-    float r;
+    float r, min;
     int counter = 0;
     public GameObject Ast;
     Vector3 dis;
@@ -32,7 +32,16 @@ public class AsteroidSpwaner : MonoBehaviour
             r = Random.Range(0, 9) - 4.5f;
             GameObject a = Instantiate(Ast, new Vector3(transform.position.x, r), transform.rotation);
 
-            r = Random.Range(0, 9) - 4.5f;
+
+            if (r <= 0)
+            {
+                min =1;
+            }
+            else
+            {
+                min = -1;
+            }
+            r = Random.Range(0, 4.5f)*min;
             a.GetComponent<Ast>().dis = new Vector3(-11, r);
 
             counter++;

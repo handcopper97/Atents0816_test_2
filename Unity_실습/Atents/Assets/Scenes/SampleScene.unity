@@ -320,7 +320,7 @@ GameObject:
   - component: {fileID: 1460589565}
   - component: {fileID: 1460589567}
   m_Layer: 0
-  m_Name: Spwaner
+  m_Name: Spanwer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
