@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8958076685411214954}
   - component: {fileID: -2002771290416763680}
   - component: {fileID: -5311411577962222957}
-  - component: {fileID: -5580309535579810469}
+  - component: {fileID: -1070789055151168612}
   m_Layer: 0
   m_Name: asteroid
   m_TagString: Untagged
@@ -118,7 +118,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -134,7 +134,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.75, y: 1.85}
   m_EdgeRadius: 0
---- !u!114 &-5580309535579810469
+--- !u!114 &-1070789055151168612
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -143,8 +143,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 6686089235734496179}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bd5f39aca9202d040bb035282fba6447, type: 3}
+  m_Script: {fileID: 11500000, guid: 7fcb9a653d0ea29418f66892a6e9cdcc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 2
-  inputDir: {x: 0, y: -1, z: 0}
+  dis: {x: 0, y: 0, z: 0}
