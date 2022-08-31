@@ -14,6 +14,8 @@ public class Player : MonoBehaviour
     PlayerInputAction inputActions;
     Rigidbody2D rigid;
     // Start is called before the first frame update
+    GameObject bullet;
+    Vector3 bulletPosition;
     void Awake()
     {
         //inputActions = new PlayerInputAction();
@@ -80,14 +82,8 @@ public class Player : MonoBehaviour
         //throw new NotImplementedException();    // NotImplementedException 을 실행해라. => 코드 구현을 알려주기 위해 강제로 죽이는 코드
 
         inputDir = context.ReadValue<Vector2>();    // 어느 방향으로 움직여야 하는지를 입력받음
-        if (inputDir.y != 0)
-        {
-
-        }
-        else
-        {
-            ani.SetFloat("InputY", inputDir.y);
-        }
+        
+        ani.SetFloat("InputY", inputDir.y);
         //dir.y > 0   // W를 눌렀다.
         //dir.y == 0  // W,S 중 아무것도 안눌렀다.
         //dir.y < 0   // S를 눌렀다.
@@ -95,8 +91,20 @@ public class Player : MonoBehaviour
     }
     public void OnFire(InputAction.CallbackContext context)
     {
+        bulletPosition = new Vector3(transform.position.x+1f, transform.position.y+1f);
+        bullet = Instantiate(Bullet, bulletPosition, Quaternion.Euler(new Vector3(0, 0, 45)));
+        bullet.GetComponent<Bullet>().inputDir = new Vector3(1, 1);
+        bulletPosition = new Vector3(transform.position.x + 1f, transform.position.y);
+        bullet = Instantiate(Bullet, bulletPosition, Quaternion.Euler(new Vector3(0, 0, 0)));
+        bullet.GetComponent<Bullet>().inputDir = new Vector3(1, 0);
+        bulletPosition = new Vector3(transform.position.x + 1f, transform.position.y-1f);
+        bullet = Instantiate(Bullet, bulletPosition, Quaternion.Euler(new Vector3(0, 0, -45)));
+        bullet.GetComponent<Bullet>().inputDir = new Vector3(1, -1);
 
-        Instantiate(Bullet, transform.position, transform.rotation);
+
+
+
+
         Debug.Log("발사");
         if (context.started)
         {
@@ -116,8 +124,15 @@ public class Player : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("Game Over");
-        Destroy(this, 0.3f);
+        if(collision.tag == "Bullet")
+        {
+
+        }
+        else
+        {
+            Debug.Log("Game Over");
+            Destroy(this.gameObject, 0.3f);
+        }
     }
     /*
     public void MoveInput(InputAction.CallbackContext context)
