@@ -13,6 +13,7 @@ public class Bullet : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         //Destroy(this.gameObject, 7f);
+        Destroy(this.gameObject, 9f);
 
     }
 

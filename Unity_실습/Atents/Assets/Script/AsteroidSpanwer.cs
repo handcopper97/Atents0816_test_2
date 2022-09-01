@@ -5,7 +5,8 @@ using static UnityEditor.Experimental.AssetDatabaseExperimental.AssetDatabaseCou
 
 public class AsteroidSpanwer : MonoBehaviour
 {
-    public float Spawn_time= 1f;
+    public float Spawn_time = 1f;
+    public int NumOfSpanwer = 10;
     float r, min;
     int counter = 0;
     public GameObject Ast;
@@ -45,7 +46,7 @@ public class AsteroidSpanwer : MonoBehaviour
             a.GetComponent<Ast>().dis = new Vector3(-11, r);
 
             counter++;
-            if (counter > 10)
+            if (counter > NumOfSpanwer)
             {
                 break;
             }
