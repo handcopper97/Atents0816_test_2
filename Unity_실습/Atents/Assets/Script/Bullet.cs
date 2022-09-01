@@ -24,16 +24,22 @@ public class Bullet : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Enemy")|| collision.gameObject.CompareTag("Ast"))
+        if (collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("Ast"))
         {
-            transform.GetChild(0).gameObject.SetActive(true);
-            transform.GetChild(0).gameObject.transform.parent = null;
-            Destroy(this.gameObject);
+            if (transform.childCount >= 1)
+            {
+                transform.GetChild(0).gameObject.SetActive(true);
+                transform.GetChild(0).gameObject.transform.parent = null;
+                Destroy(this.gameObject);
+            }
+
         }
         else
         {
 
         }
-            
+
     }
+
+
 }

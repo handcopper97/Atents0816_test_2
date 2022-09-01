@@ -3,9 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using DG.Tweening;
 
 public class Player : MonoBehaviour
 {
+
     public GameObject Bullet;
     public float speed=1f, speeded;
     Vector3 inputDir;
@@ -18,6 +20,7 @@ public class Player : MonoBehaviour
     Vector3 bulletPosition;
     void Awake()
     {
+        //transform.DOMoveX(1, 5);
         //inputActions = new PlayerInputAction();
         rigid = GetComponent<Rigidbody2D>();
         ani = GetComponent<Animator>();
@@ -25,6 +28,8 @@ public class Player : MonoBehaviour
     }
     void FixedUpdate()
     {
+        
+        
         //피하기 게임 용 무브
         /*
         if (inputDir.y != 0)
@@ -39,7 +44,8 @@ public class Player : MonoBehaviour
         */
         rigid.MovePosition(transform.position + speed * Time.fixedDeltaTime * inputDir);
 
-
+        
+        //transform.DOMoveX(100, 1);
     }
     /*
     // Update is called once per frame
