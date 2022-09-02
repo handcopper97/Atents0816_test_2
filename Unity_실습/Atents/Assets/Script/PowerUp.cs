@@ -8,14 +8,14 @@ public class PowerUp : MonoBehaviour
 {
     public Vector3 dis = new Vector3(-1, 1);
     public float speed = 3, duringTime = 10f, moveRandom = 1f;
-    float counter = 0;
-
+    
 
     // Start is called before the first frame update
     void Start()
     {
         StartCoroutine(switchDir());
         Destroy(this.gameObject, duringTime);
+        //GetComponent<Collider2D>().bounds.min
     }
 
     // Update is called once per frame
@@ -50,8 +50,8 @@ public class PowerUp : MonoBehaviour
     IEnumerator switchDir()
     {
         int r = 0;
-        StartCoroutine(counterPlus());
-        while (counter < duringTime)
+        //StartCoroutine(counterPlus());//카운터 사겢
+        while (true)
         {
             yield return new WaitForSeconds(moveRandom);
             r = Random.Range(-1, 2);
@@ -59,19 +59,15 @@ public class PowerUp : MonoBehaviour
             {
                 r = Random.Range(-1, 2);
             }
+            //Vector2.Reflect //특정 개체 위치 벡터에 
+            
 
-
-
-            dis = new Vector3(dis.x, dis.y * r);
+            dis = new Vector3(dis.x, dis.y * r);//이해를 잘못했음
             
             //counter += Time.deltaTime;
         }
 
     }
 
-    IEnumerator counterPlus()
-    {
-        yield return new WaitForSeconds(duringTime);
-        counter = duringTime+1;
-    }
+    
 }
