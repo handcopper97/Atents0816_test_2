@@ -319,6 +319,7 @@ GameObject:
   - component: {fileID: 1460589566}
   - component: {fileID: 1460589565}
   - component: {fileID: 1460589567}
+  - component: {fileID: 1460589568}
   m_Layer: 0
   m_Name: Spanwer
   m_TagString: Untagged
@@ -333,7 +334,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1460589564}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 339501e3179b932429f257c7c169aac1, type: 3}
   m_Name: 
@@ -362,7 +363,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1460589564}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 892b977b0de1bc44ebaaa1422266cdb4, type: 3}
   m_Name: 
@@ -370,6 +371,21 @@ MonoBehaviour:
   Spawn_time: 1
   NumOfSpanwer: 100
   Ast: {fileID: 6686089235734496179, guid: 6367a87b19de78c43b8726e236e37122, type: 3}
+--- !u!114 &1460589568
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1460589564}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbe328deeedcf7f4e8316c30c4e349a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Spawn_time: 3
+  NumOfSpanwer: 30
+  PowerObeject: {fileID: 8443144935633333821, guid: c12407c26c8973a44a44972309bb02cd, type: 3}
 --- !u!1001 &939861358722032449
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -399,7 +415,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 939861360261506330, guid: c1b62dfd1a9e7904282aabe76a4d2e40, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -7
+      value: -1.9
       objectReference: {fileID: 0}
     - target: {fileID: 939861360261506330, guid: c1b62dfd1a9e7904282aabe76a4d2e40, type: 3}
       propertyPath: m_LocalPosition.y
