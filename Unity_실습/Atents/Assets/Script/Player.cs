@@ -18,6 +18,7 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     GameObject bullet;
     Vector3 bulletPosition;
+    public int power = 0;
     void Awake()
     {
         //transform.DOMoveX(1, 5);
@@ -97,6 +98,50 @@ public class Player : MonoBehaviour
     }
     public void OnFire(InputAction.CallbackContext context)
     {
+        if (power > 2)
+        {
+            power = 2;
+        }else if (power < 0)
+        {
+            power = 0;
+        }
+        
+        switch (power)
+        {
+            case 0:
+                bulletPosition = new Vector3(transform.position.x + 1f, transform.position.y);
+                bullet = Instantiate(Bullet, bulletPosition, Quaternion.Euler(new Vector3(0, 0, 0)));
+                bullet.GetComponent<Bullet>().inputDir = new Vector3(1, 0);
+                break;
+
+            case 1:
+                bulletPosition = new Vector3(transform.position.x + 1f, transform.position.y + 1f);
+                bullet = Instantiate(Bullet, bulletPosition, Quaternion.Euler(new Vector3(0, 0, 45)));
+                bullet.GetComponent<Bullet>().inputDir = new Vector3(1, 1);
+                bulletPosition = new Vector3(transform.position.x + 1f, transform.position.y - 1f);
+                bullet = Instantiate(Bullet, bulletPosition, Quaternion.Euler(new Vector3(0, 0, -45)));
+                bullet.GetComponent<Bullet>().inputDir = new Vector3(1, -1);
+                break;
+
+            case 2:
+                bulletPosition = new Vector3(transform.position.x + 1f, transform.position.y);
+                bullet = Instantiate(Bullet, bulletPosition, Quaternion.Euler(new Vector3(0, 0, 0)));
+                bullet.GetComponent<Bullet>().inputDir = new Vector3(1, 0);
+
+                bulletPosition = new Vector3(transform.position.x + 1f, transform.position.y + 1f);
+                bullet = Instantiate(Bullet, bulletPosition, Quaternion.Euler(new Vector3(0, 0, 45)));
+                bullet.GetComponent<Bullet>().inputDir = new Vector3(1, 1);
+
+                bulletPosition = new Vector3(transform.position.x + 1f, transform.position.y - 1f);
+                bullet = Instantiate(Bullet, bulletPosition, Quaternion.Euler(new Vector3(0, 0, -45)));
+                bullet.GetComponent<Bullet>().inputDir = new Vector3(1, -1);
+                break;
+
+            default:
+                break;
+        }
+
+        /*
         bulletPosition = new Vector3(transform.position.x+1f, transform.position.y+1f);
         bullet = Instantiate(Bullet, bulletPosition, Quaternion.Euler(new Vector3(0, 0, 45)));
         bullet.GetComponent<Bullet>().inputDir = new Vector3(1, 1);
@@ -106,7 +151,7 @@ public class Player : MonoBehaviour
         bulletPosition = new Vector3(transform.position.x + 1f, transform.position.y-1f);
         bullet = Instantiate(Bullet, bulletPosition, Quaternion.Euler(new Vector3(0, 0, -45)));
         bullet.GetComponent<Bullet>().inputDir = new Vector3(1, -1);
-
+        */
 
 
 
@@ -130,15 +175,12 @@ public class Player : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.tag == "Bullet")
-        {
-
-        }
-        else
+        if (collision.CompareTag("Enemy") || collision.CompareTag("Ast"))
         {
             Debug.Log("Game Over");
             Destroy(this.gameObject, 0.3f);
         }
+        
     }
     /*
     public void MoveInput(InputAction.CallbackContext context)
