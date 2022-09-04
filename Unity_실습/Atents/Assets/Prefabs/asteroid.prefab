@@ -159,6 +159,8 @@ MonoBehaviour:
   maxMoveSpeed: 4
   minRotateSpeed: 30
   maxRotateSpeed: 360
+  dropItemPer: 0.1
+  dropItem: {fileID: 8443144935633333821, guid: c12407c26c8973a44a44972309bb02cd, type: 3}
 --- !u!95 &-1351348499441982189
 Animator:
   serializedVersion: 4

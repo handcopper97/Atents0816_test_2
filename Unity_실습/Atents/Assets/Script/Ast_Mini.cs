@@ -8,16 +8,19 @@ public class Ast_Mini : MonoBehaviour
 {
 
     public float speed;
-    Rigidbody2D rb;
-    public Vector3 dis;
+    public Vector3 dis = new Vector3(0,0);
+    public float Max_s = 7f, Min_s = 3f;
     Collider2D col;
-
+    Ast_Mini ast_m;
     // Start is called before the first frame update
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
-        col = GetComponent<Collider2D>();
-        dis = new Vector3(Random.Range(-7, 7), Random.Range(-7, 7));
+        while((dis.x ==0&&dis.y==0))
+        {
+            dis = new Vector3(Random.Range(-10, 10), Random.Range(-10, 10));
+        }
+        
+        
         Destroy(this.gameObject, 10f);
     }
 
@@ -29,7 +32,7 @@ public class Ast_Mini : MonoBehaviour
     private void OnEnable()
     {
         //col.enabled = true;
-        StartCoroutine(Dont_Move_For_S());
+        //ast_m.enabled = true;
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -57,23 +60,11 @@ public class Ast_Mini : MonoBehaviour
         }
     }
 
-    IEnumerator Dont_Move_For_S()
-    {
-        yield return new WaitForSeconds(0.2f);
-        //col.enabled = false;
-    }
+    
     void Move()
     {
-        if (this.gameObject.CompareTag("Enemy"))
-        {
-            float f = Random.Range(0, 361);
-            dis = new Vector3(-1, 1 * Mathf.Sin(f));
-            transform.Translate(speed * Time.deltaTime * dis, Space.World);
-        }
-        else
-        {
-            transform.Translate(speed * Time.deltaTime * dis, Space.World);
-        }
+        
+        transform.Translate(speed * Time.deltaTime * dis, Space.World);
 
 
         //리지드 바디 움직임(끊김)

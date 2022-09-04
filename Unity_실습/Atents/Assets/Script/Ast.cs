@@ -22,6 +22,9 @@ public class Ast : MonoBehaviour
     public float minRotateSpeed = 30.0f;
     public float maxRotateSpeed = 360.0f;
 
+    public float dropItemPer = 0.1f;
+    public GameObject dropItem;
+
 
     // Start is called before the first frame update
     void Start()
@@ -104,7 +107,7 @@ public class Ast : MonoBehaviour
     {
         bool IsPlayer = collision.gameObject.CompareTag("Player");
         //플레이어 접촉 시 터짐 여부 = IsPlayer
-        if (collision.gameObject.CompareTag("Bullet") || IsPlayer)
+        if (collision.gameObject.CompareTag("Bullet"))
         {
             if (this.gameObject.CompareTag("Ast"))
             {
@@ -112,13 +115,14 @@ public class Ast : MonoBehaviour
                 if (counter >= 3 || IsPlayer)
                 {
                     Explosion();
-
+                    DropPower();
 
                 }
             }
             else
             {
                 Explosion();
+                DropPower();
             }
 
             //
@@ -129,6 +133,10 @@ public class Ast : MonoBehaviour
             //stop = true;
             //Destroy(this.gameObject, 1f);
         }
+        else if (IsPlayer)
+        {
+            Explosion();
+        }
     }
 
     void Explosion()
@@ -138,6 +146,9 @@ public class Ast : MonoBehaviour
 
             if (this.gameObject.CompareTag("Ast"))
             {
+                transform.GetChild(0).gameObject.SetActive(true);
+                transform.GetChild(0).gameObject.transform.parent = null;
+
                 Crush();
             }
             else
@@ -157,20 +168,36 @@ public class Ast : MonoBehaviour
 
     void Crush()
     {
+        StartCoroutine(Crush_turn());
         //랜덤 o
-        int rand = Random.Range(0, transform.childCount);
-        for (int i = 0; i < transform.childCount - rand; i++)
-        {
-            transform.GetChild(i).gameObject.SetActive(true);
+        //int rand = Random.Range(0, transform.childCount);
+        //for (int i = 0; i < transform.childCount - rand; i++)
+        //{
+        //    transform.GetChild(0).gameObject.SetActive(true);
 
-        }
-        for (int i = 0; i < transform.childCount - rand;)
-        {
-            transform.GetChild(i).gameObject.transform.parent = null;
+        //    GameObject c = transform.GetChild(0).gameObject;
+        //    if (!c.GetComponent<Ast_Mini>().enabled)
+        //    {
+        //        c.GetComponent<Ast_Mini>().enabled = true;
+        //    }
+        //    if (!c.GetComponent<Collider2D>().enabled)
+        //    {
+        //        c.GetComponent<Collider2D>().enabled = true;
+        //    }
 
-        }
+        //    transform.GetChild(0).gameObject.transform.parent = null;
+        //}
 
-        Destroy(this.gameObject);
+        //Destroy(this.gameObject);
+
+
+
+        //for (int i = 0; i < transform.childCount - rand;)
+        //{
+        //    transform.GetChild(i).gameObject.transform.parent = null;
+
+        //}
+
 
 
         //랜덤 트라이(작동안됨, 배열 에러)
@@ -186,6 +213,15 @@ public class Ast : MonoBehaviour
         */
     }
 
+    void DropPower()
+    {
+        float r = Random.value;
+        
+        if (r <= dropItemPer)
+        {
+            GameObject item = Instantiate(dropItem, transform.position, Quaternion.Euler(0,0,0));
+        }
+    }
     void SetAst()
     {
         //스피드 랜덤
@@ -224,6 +260,7 @@ public class Ast : MonoBehaviour
         StartCoroutine(Auto_Explosion());
     }
 
+
     IEnumerator Auto_Explosion()
     {
         float r = Random.Range(3f, 6f);
@@ -231,5 +268,19 @@ public class Ast : MonoBehaviour
 
         Explosion();
 
+    }
+    IEnumerator Crush_turn()
+    {
+        int rand = Random.Range(0, transform.childCount);
+        for (int i = 0; i < transform.childCount - rand; i++)
+        {
+            yield return new WaitForSeconds(0.01f);
+
+            transform.GetChild(0).gameObject.SetActive(true);
+            transform.GetChild(0).gameObject.transform.parent = null;
+        }
+
+        yield return new WaitForSeconds(0.01f * transform.childCount - rand);
+        Destroy(this.gameObject);
     }
 }

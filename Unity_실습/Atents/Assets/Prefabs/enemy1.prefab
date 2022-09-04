@@ -176,6 +176,8 @@ MonoBehaviour:
   maxMoveSpeed: 4
   minRotateSpeed: 30
   maxRotateSpeed: 360
+  dropItemPer: 0.1
+  dropItem: {fileID: 8443144935633333821, guid: c12407c26c8973a44a44972309bb02cd, type: 3}
 --- !u!1001 &2965328591661861743
 PrefabInstance:
   m_ObjectHideFlags: 0
