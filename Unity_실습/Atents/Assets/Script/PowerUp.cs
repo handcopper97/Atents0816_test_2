@@ -8,11 +8,11 @@ public class PowerUp : MonoBehaviour
 {
     public Vector3 dis = new Vector3(-1, 1);
     public float speed = 3, duringTime = 10f, moveRandom = 1f;
-    
 
     // Start is called before the first frame update
     void Start()
     {
+        
         StartCoroutine(switchDir());
         Destroy(this.gameObject, duringTime);
         //GetComponent<Collider2D>().bounds.min

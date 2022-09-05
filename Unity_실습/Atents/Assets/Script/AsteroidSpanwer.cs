@@ -30,20 +30,12 @@ public class AsteroidSpanwer : MonoBehaviour
         {
             yield return new WaitForSeconds(Spawn_time);
 
-            r = Random.Range(0, 9) - 4.5f;
+            r = Random.Range(-4.5f, 4.5f);
             GameObject a = Instantiate(Ast, new Vector3(transform.position.x, r), transform.rotation);
 
 
-            if (r <= 0)
-            {
-                min =1;
-            }
-            else
-            {
-                min = -1;
-            }
-            r = Random.Range(0, 4.5f)*min;
-            a.GetComponent<Ast>().dis = new Vector3(-11, r);
+            r = Random.Range(-4.5f, 4.5f);
+            a.GetComponent<Ast>().dis = new Vector3(-1-Mathf.Abs(r), r);
 
             counter++;
             if (counter > NumOfSpanwer)

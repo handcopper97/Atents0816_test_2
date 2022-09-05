@@ -9,19 +9,19 @@ public class Ast_Mini : MonoBehaviour
 
     public float speed;
     public Vector3 dis = new Vector3(0,0);
-    public float Max_s = 7f, Min_s = 3f;
-    Collider2D col;
-    Ast_Mini ast_m;
+    public int Max_s = 5;
+    public float during_time = 10f;
     // Start is called before the first frame update
+    
     void Start()
     {
         while((dis.x ==0&&dis.y==0))
         {
-            dis = new Vector3(Random.Range(-10, 10), Random.Range(-10, 10));
+            dis = new Vector3(Random.Range(-Max_s, Max_s), Random.Range(-Max_s, Max_s));
         }
-        
-        
-        Destroy(this.gameObject, 10f);
+
+
+        StartCoroutine(Destroy_timelek(during_time)); 
     }
 
     // Update is called once per frame
@@ -59,8 +59,14 @@ public class Ast_Mini : MonoBehaviour
 
         }
     }
+    IEnumerator Destroy_timelek(float t)
+    {
+        yield return new WaitForSeconds(t);
+        transform.GetChild(0).gameObject.SetActive(true);
+        transform.GetChild(0).gameObject.transform.parent = null;
+        Destroy(this.gameObject);
+    }
 
-    
     void Move()
     {
         

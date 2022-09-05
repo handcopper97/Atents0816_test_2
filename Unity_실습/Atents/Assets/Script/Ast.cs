@@ -6,13 +6,12 @@ using UnityEngine;
 
 public class Ast : MonoBehaviour
 {
-    public float speed;
+    public float min_speed, max_speed, speed;
     Rigidbody2D rb;
     public Vector3 dis;
     int counter = 0;
     float r, sum;
     SpriteRenderer sp;
-
 
     public float rotateSpeed = 360.0f;          // 회전 속도
     public float moveSpeed = 3.0f;              // 이동 속도
@@ -137,6 +136,7 @@ public class Ast : MonoBehaviour
         {
             Explosion();
         }
+        
     }
 
     void Explosion()
@@ -225,7 +225,7 @@ public class Ast : MonoBehaviour
     void SetAst()
     {
         //스피드 랜덤
-        speed = Random.Range(1, 3) / 1.5f;
+        speed = Random.Range(min_speed, max_speed+1) / 1.5f;
 
         //축 랜덤
         r = Random.Range(0, 3);
