@@ -275,9 +275,16 @@ public class Ast : MonoBehaviour
         for (int i = 0; i < transform.childCount - rand; i++)
         {
             yield return new WaitForSeconds(0.01f);
+            if(transform.childCount == 0)
+            {
 
-            transform.GetChild(0).gameObject.SetActive(true);
-            transform.GetChild(0).gameObject.transform.parent = null;
+            }
+            else
+            {
+                transform.GetChild(0).gameObject.SetActive(true);
+                transform.GetChild(0).gameObject.transform.parent = null;
+            }
+            
         }
 
         yield return new WaitForSeconds(0.01f * transform.childCount - rand);
