@@ -14,6 +14,7 @@ public class AsteroidSpanwer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
         StartCoroutine(AsteroidSpawn());
     }
 
@@ -32,7 +33,7 @@ public class AsteroidSpanwer : MonoBehaviour
 
             r = Random.Range(-4.5f, 4.5f);
             GameObject a = Instantiate(Ast, new Vector3(transform.position.x, r), transform.rotation);
-
+            
 
             r = Random.Range(-4.5f, 4.5f);
             a.GetComponent<Ast>().dis = new Vector3(-1-Mathf.Abs(r), r);

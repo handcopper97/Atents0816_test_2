@@ -3,15 +3,17 @@ using UnityEngine;
 using static UnityEditor.Experimental.AssetDatabaseExperimental.AssetDatabaseCounters;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.InputSystem;
 
 public class BackGround : MonoBehaviour
 {
     public float speed;
     public Transform[] backgrounds;
-    float[] x;
     public const float LengthOfBack = 13.6f;
-    int counter = -1;
-    bool counter_b = true;
+
+    public int counter = -1;
+    public bool counter_b = true;
+    public float[] x;
 
     //float leftPosX = 0f;
     //float rightPosX = 0f;
@@ -74,16 +76,16 @@ public class BackGround : MonoBehaviour
             {
                 counter_b = false;
                 counter = i;
-                Debug.Log($"counter = {i}");
             }
 
         }
         if (counter > -1)
         {
-            Debug.Log($"\n현 for문 종료 후 counter = {counter}");
             backgrounds[counter].position = new Vector2(x[counter] + LengthOfBack * 2 - LengthOfBack * counter, backgrounds[counter].position.y);
             counter = -1;
             counter_b = true;
         }
     }
+
+    
 }

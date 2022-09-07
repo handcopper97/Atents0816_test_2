@@ -103,6 +103,12 @@ MonoBehaviour:
   Bullet: {fileID: 9115845019266313235, guid: 0e0610a74ebbc3a4da67e0666dbf16eb, type: 3}
   speed: 5
   speeded: 0
+  timeToDie: 1.5
+  timeToGod: 3
+  isDead: 0
+  god: 0
+  power: 0
+  HP: 3
 --- !u!70 &939861360261506337
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
