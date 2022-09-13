@@ -140,6 +140,7 @@ MonoBehaviour:
   speed: 2
   dis: {x: 0, y: 0, z: 0}
   Max_s: 5
+  score: 5
   during_time: 10
 --- !u!1001 &2948607366647509424
 PrefabInstance:

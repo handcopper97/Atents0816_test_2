@@ -171,6 +171,7 @@ MonoBehaviour:
   min_speed: 0
   max_speed: 0
   speed: 4
+  score: 20
   dis: {x: -7, y: 0, z: 0}
   rotateSpeed: 360
   moveSpeed: 3

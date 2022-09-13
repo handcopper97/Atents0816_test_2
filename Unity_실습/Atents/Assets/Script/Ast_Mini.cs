@@ -9,13 +9,16 @@ public class Ast_Mini : MonoBehaviour
 
     public float speed;
     public Vector3 dis = new Vector3(0,0);
-    public int Max_s = 5;
+    public int Max_s = 5, score=10;
     public float during_time = 10f;
     // Start is called before the first frame update
-    
+    private System.Action<int> onDead;
+    Player player;
     void Start()
     {
-        while((dis.x ==0&&dis.y==0))
+        player = FindObjectOfType<Player>();
+        
+        while ((dis.x ==0&&dis.y==0))
         {
             dis = new Vector3(Random.Range(-Max_s, Max_s), Random.Range(-Max_s, Max_s));
         }
@@ -40,6 +43,8 @@ public class Ast_Mini : MonoBehaviour
         //플레이어 접촉 시 터짐 여부 = IsPlayer
         if (collision.gameObject.CompareTag("Bullet") || IsPlayer)
         {
+            onDead += player.AddScore;
+            onDead(score);
             Explosion();
         }
     }

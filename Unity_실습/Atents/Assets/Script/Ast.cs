@@ -3,15 +3,18 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Networking.Types;
 
 public class Ast : MonoBehaviour
 {
     public float min_speed, max_speed, speed;
+    public int score = 100;
     Rigidbody2D rb;
     public Vector3 dis;
     int counter = 0;
     float r, sum;
     SpriteRenderer sp;
+    Player player;
 
     public float rotateSpeed = 360.0f;          // 회전 속도
     public float moveSpeed = 3.0f;              // 이동 속도
@@ -24,7 +27,7 @@ public class Ast : MonoBehaviour
     public float dropItemPer = 0.1f;
     public GameObject dropItem;
 
-
+    private System.Action<int> onDead;
     // Start is called before the first frame update
     void Start()
     {
@@ -47,6 +50,8 @@ public class Ast : MonoBehaviour
 
     void SetStart()
     {
+        player = FindObjectOfType<Player>();
+        
         sp = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
         Destroy(this.gameObject, 10f);
@@ -77,7 +82,6 @@ public class Ast : MonoBehaviour
     {
         if (this.gameObject.CompareTag("Enemy"))
         {
-            float f=0;
             sum += Time.deltaTime*3f;
             /*
             if (0.5f < sum)
@@ -110,9 +114,12 @@ public class Ast : MonoBehaviour
         {
             if (this.gameObject.CompareTag("Ast"))
             {
+
                 counter++;
                 if (counter >= 3 || IsPlayer)
                 {
+                    onDead += player.AddScore;
+                    onDead(score * 3);
                     Explosion();
                     DropPower();
 
@@ -120,6 +127,8 @@ public class Ast : MonoBehaviour
             }
             else
             {
+                onDead += player.AddScore;
+                onDead(score);
                 Explosion();
                 DropPower();
             }
@@ -148,7 +157,7 @@ public class Ast : MonoBehaviour
             {
                 transform.GetChild(0).gameObject.SetActive(true);
                 transform.GetChild(0).gameObject.transform.parent = null;
-
+                
                 Crush();
             }
             else

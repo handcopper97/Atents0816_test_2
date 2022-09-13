@@ -22,9 +22,12 @@ public class Player : MonoBehaviour
     SpriteRenderer sp;
     // Start is called before the first frame update
     GameObject bullet;
+    AudioSource audio;
     Vector3 bulletPosition;
-    public int power = 0, HP = 10;
+    public int power = 0, HP = 10, totalscore=0;
     public Action<int> HealthChange;
+    public Action<int> ScoreChange;
+    public Action PlayerDead;
 
     void Awake()
     {
@@ -34,6 +37,12 @@ public class Player : MonoBehaviour
         ani = GetComponent<Animator>();
         sp = GetComponent<SpriteRenderer>();
         inputActions = new PlayerInputAction();
+        audio = GetComponent<AudioSource>();
+
+        AddScore(0);//스코어 초기화 용
+    }
+    private void Start()
+    {
         HealthChange(HP);
     }
     void FixedUpdate()
@@ -68,7 +77,7 @@ public class Player : MonoBehaviour
        
         inputActions.Player.Shift.canceled += OnBoostOff;
         inputActions.Player.Shift.performed += OnBoostOn;
-        inputActions.Player.Fire.canceled += OnFire;
+        //inputActions.Player.Fire.canceled += OnFire;
         inputActions.Player.Fire.performed += OnFire;
         inputActions.Player.Move.canceled += OnMove;    // 연결해 놓은 함수 해제(안전을 위해)
         inputActions.Player.Move.performed += OnMove;
@@ -96,6 +105,8 @@ public class Player : MonoBehaviour
     }
     public void OnFire(InputAction.CallbackContext context)
     {
+        audio.Play();
+
         if (power > 2)
         {
             power = 2;
@@ -152,15 +163,6 @@ public class Player : MonoBehaviour
         bullet.GetComponent<Bullet>().inputDir = new Vector3(1, -1);
         */
 
-
-
-
-        //Debug.Log("발사");
-        if (context.started)
-        {
-
-        }
-
     }
 
     public void OnBoostOn(InputAction.CallbackContext context)
@@ -193,6 +195,7 @@ public class Player : MonoBehaviour
         if (HP <= 0 && !isDead)
         {
             god = true;
+            Debug.Log("die");
             StartCoroutine(GameOver());
         }
         else
@@ -200,16 +203,23 @@ public class Player : MonoBehaviour
             StartCoroutine(GodMoad());
         }
     }
+    public void AddScore(int s)
+    {
+        totalscore += s;
+        ScoreChange?.Invoke(totalscore);
+    }
     IEnumerator GameOver()
     {
+        
         isDead = true;
         GetComponent<Collider2D>().enabled = false;
         InputDisable();
         rigid.gravityScale = 1.0f;
         rigid.freezeRotation = false;
         yield return new WaitForSeconds(timeToDie);
+        PlayerDead();
         Destroy(gameObject);
-        Time.timeScale = 0;
+        //Time.timeScale = 0;
     }
     IEnumerator GodMoad()
     {
@@ -232,7 +242,7 @@ public class Player : MonoBehaviour
     {
         inputActions.Player.Shift.canceled -= OnBoostOff;
         inputActions.Player.Shift.performed -= OnBoostOn;
-        inputActions.Player.Fire.canceled -= OnFire;
+        //inputActions.Player.Fire.canceled -= OnFire;
         inputActions.Player.Fire.performed -= OnFire;
         inputActions.Player.Move.canceled -= OnMove;    // 연결해 놓은 함수 해제(안전을 위해)
         inputActions.Player.Move.performed -= OnMove;

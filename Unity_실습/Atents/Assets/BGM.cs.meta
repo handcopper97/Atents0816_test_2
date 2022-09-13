@@ -1,10 +1,9 @@
 fileFormatVersion: 2
-guid: bbe328deeedcf7f4e8316c30c4e349a7
+guid: 9ec1ffe6770429649924089fe8db5982
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences:
-  - PowerObeject: {fileID: 8443144935633333821, guid: c12407c26c8973a44a44972309bb02cd, type: 3}
+  defaultReferences: []
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
